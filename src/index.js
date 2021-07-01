@@ -1,12 +1,24 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import './index.css';
+// import { Provider } from 'react-redux';
+// import { createStore, applyMiddleware } from 'redux';
+// import thunk from 'redux-thunk';
 import App from './App';
+import './index.css';
 import reportWebVitals from './reportWebVitals';
+
+// const rootReducer = combineReducers({
+//   vacations: vacationsReducer,
+//   activities: activitiesReducer
+// })
+
+// const store = createStore(rootReducer, applyMiddleware(thunk))
 
 ReactDOM.render(
   <React.StrictMode>
-    <App />
+    {/* <Provider store={store}> */}
+      <App />
+    {/* </Provider> */}
   </React.StrictMode>,
   document.getElementById('root')
 );

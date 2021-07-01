@@ -36,3 +36,30 @@
     transform: rotate(360deg);
   }
 }
+
+.board {
+  width: 30.4rem;
+  height: 30.4rem;
+  margin: auto;
+  border: 1px solid black;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.square {
+  width: 10rem;
+  height: 10rem;
+  border: 1px solid black;
+}
+
+.square:hover {
+  background: lightblue;
+  cursor: pointer;
+}
+
+.input {
+  /* margin: auto; */
+  font-size: 3.5rem;
+  /* text-align: center;
+  padding: 30px; */
+}
