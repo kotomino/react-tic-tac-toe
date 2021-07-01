@@ -1,5 +1,7 @@
 .App {
   text-align: center;
+  display: flex;
+  flex-wrap: wrap;
 }
 
 .App-logo {
@@ -35,6 +37,13 @@
   to {
     transform: rotate(360deg);
   }
+}
+
+.scoreboard {
+  width: 20rem;
+  height: 30.4rem;
+  margin: auto;
+  border: 1px solid black;
 }
 
 .board {
