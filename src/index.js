@@ -1,24 +1,20 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-// import { Provider } from 'react-redux';
-// import { createStore, applyMiddleware } from 'redux';
-// import thunk from 'redux-thunk';
+import { Provider } from 'react-redux';
+import { createStore, applyMiddleware } from 'redux';
+import thunk from 'redux-thunk';
 import App from './App';
 import './index.css';
+import pointsReducer from './reducers/pointsReducer';
 import reportWebVitals from './reportWebVitals';
 
-// const rootReducer = combineReducers({
-//   vacations: vacationsReducer,
-//   activities: activitiesReducer
-// })
-
-// const store = createStore(rootReducer, applyMiddleware(thunk))
+const store = createStore(pointsReducer, applyMiddleware(thunk))
 
 ReactDOM.render(
   <React.StrictMode>
-    {/* <Provider store={store}> */}
+    <Provider store={store}>
       <App />
-    {/* </Provider> */}
+    </Provider>
   </React.StrictMode>,
   document.getElementById('root')
 );

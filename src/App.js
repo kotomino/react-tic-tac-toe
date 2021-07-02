@@ -1,5 +1,7 @@
 import './App.css';
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import { getPoints, addPoints } from './actions/points';
 import Board from './components/Board';
 import Scoreboard from './components/Scoreboard';
 
@@ -13,6 +15,13 @@ class App extends Component {
     }
 
     this.squareClicked = this.squareClicked.bind(this);
+  }
+
+  componentDidMount() {
+    this.props.getPoints();
+
+    console.log("x", this.props.xPoints);
+    console.log("o", this.props.oPoints);
   }
 
   squareClicked(index) {
@@ -61,6 +70,36 @@ class App extends Component {
 
       if (board[v1] !== "" && board[v1] === board[v2] && board[v2] === board[v3]) {
         alert(`Winner ${playerTurn} wins the game!`);
+
+        console.log("end game x", this.props.xPoints);
+        console.log("end game o", this.props.oPoints);
+
+        if (playerTurn === "X") {
+          const state = {
+            xpoints: this.props.xPoints + 1,
+            opoints: this.props.oPoints
+          }
+
+          console.log("points", state);
+
+          this.props.addPoints(state);
+        } else {
+          const state = {
+            xpoints: this.props.xPoints,
+            opoints: this.props.oPoints + 1
+          }
+
+          this.props.addPoints(state);
+        }
+
+        console.log("end game x", this.props.xPoints);
+        console.log("end game o", this.props.oPoints);
+        
+        //reset board
+        this.setState({
+          board: ["", "", "", "", "", "", "", "", ""]
+        })
+        
       }
 
     }
@@ -72,15 +111,29 @@ class App extends Component {
   }
 
   render() {
+
+    if (this.props.loading) {
+      return (
+        <h3>Loading...</h3>
+      )
+    }
+
     return (
       <div className="App">
         <h1 className="title">Tic Tac Toe</h1>
         <Board board={this.state.board} squareClicked={this.squareClicked} />
-        <Scoreboard/>
+        <Scoreboard playerTurn={this.state.player_turn} xPoints={this.props.xPoints} oPoints={this.props.oPoints} />
       </div>
     )
   }
-  
 }
 
-export default App;
+const mapStateToProps = state => {
+  return {
+    loading: state.loading,
+    xPoints: state.xPoints,
+    oPoints: state.oPoints
+  }
+}
+
+export default connect(mapStateToProps, {getPoints, addPoints})(App);
