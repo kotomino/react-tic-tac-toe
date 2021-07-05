@@ -50,6 +50,7 @@
   margin-right: auto;
   border: 1px solid black;
   border-top-right-radius: 25px;
+  background: lightblue;
 }
 
 .board {
@@ -84,6 +85,7 @@
   border: 1px solid black;
   margin: auto;
   margin-top: 30px;
+  background: white;
 }
 
 .input {
